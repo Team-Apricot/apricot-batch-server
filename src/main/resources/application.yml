@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: apricot-batch
+  profiles:
+    include: secret
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+  batch:
+    job:
+      enabled: false
