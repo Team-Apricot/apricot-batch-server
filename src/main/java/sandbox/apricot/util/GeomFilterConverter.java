@@ -57,8 +57,10 @@ public class GeomFilterConverter {
           for (Object coord : coordinates.get(0)) {
             for (Object c : (List) coord) {
               regionCoord.append(c.toString())
-                  .append(",");
+                  .append(" ");
             }
+          regionCoord.deleteCharAt(regionCoord.length() - 1);
+          regionCoord.append(",");
           }
 
           // 마지막 콤마 제거 후 마무리
