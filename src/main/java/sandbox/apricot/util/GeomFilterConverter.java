@@ -32,8 +32,8 @@ public class GeomFilterConverter {
       // JSONObject 생성 시작
       JSONObject jsonObject = (JSONObject) parser.parse(reader);
       List<JSONObject> features = (List<JSONObject>) jsonObject.get("features");
-
       for (JSONObject feature : features) {
+
         // 지역구별 Multipolygon 형식으로 RegionCoord에 저장
         StringBuilder regionCoord = new StringBuilder();
         JSONObject geom = (JSONObject) feature.get("geometry");
@@ -54,13 +54,21 @@ public class GeomFilterConverter {
 
         if (RegionSIGCode.startsWith("11")) {
 
+          int lengthLimiter = 0;
           for (Object coord : coordinates.get(0)) {
+            if (lengthLimiter >= 99) {
+              break;
+            }
             for (Object c : (List) coord) {
               regionCoord.append(c.toString())
                   .append(" ");
             }
-          regionCoord.deleteCharAt(regionCoord.length() - 1);
-          regionCoord.append(",");
+            lengthLimiter++;
+            System.out.println(lengthLimiter);
+            regionCoord.deleteCharAt(regionCoord.length() - 1);
+            regionCoord.append(",");
+
+
           }
 
           // 마지막 콤마 제거 후 마무리
