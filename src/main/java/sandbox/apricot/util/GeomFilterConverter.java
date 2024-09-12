@@ -22,7 +22,9 @@ public class GeomFilterConverter {
     ArrayList<String> enumList = new ArrayList<>();
     ArrayList<String> regionKORNames = new ArrayList<>();
     ArrayList<String> regionENGNames = new ArrayList<>();
-
+    
+    // Multipolygon 최대 개수 설정
+    int limiter =99;
     // StreamReader
     try (Reader reader = new InputStreamReader(
         GeomFilterConverter.class.getResourceAsStream(JSONPath),
@@ -53,22 +55,22 @@ public class GeomFilterConverter {
         String RegionSIGCode = (String) properties.get("SIG_CD");
 
         if (RegionSIGCode.startsWith("11")) {
-
-          int lengthLimiter = 0;
+          int mpCount=0;
+//          String finale= "";
           for (Object coord : coordinates.get(0)) {
-            if (lengthLimiter >= 99) {
+            if (mpCount>=limiter){
+              System.out.println(regionKORName + "의 Multipolygon이 너무 길어 끊겼습니다.😥");
               break;
             }
+
             for (Object c : (List) coord) {
               regionCoord.append(c.toString())
                   .append(" ");
             }
-            lengthLimiter++;
-            System.out.println(lengthLimiter);
+
+            mpCount++;
             regionCoord.deleteCharAt(regionCoord.length() - 1);
             regionCoord.append(",");
-
-
           }
 
           // 마지막 콤마 제거 후 마무리
