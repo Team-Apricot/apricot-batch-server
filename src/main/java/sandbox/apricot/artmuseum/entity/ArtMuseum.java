@@ -17,27 +17,25 @@ import lombok.NoArgsConstructor;
 public class ArtMuseum {
 
   @Id
-  private String mus_nam; // 시설명
-  private String mus_typ; // 박물관미술관구분
+  private String museumName; // 시설명
+  private String museumType; // 미술관/박물관 구분
 
-  private String con_nam; // 지역구명 🎈
-  private String new_adr; // 소재지도로명주소
+  private String districtCode; // 지역구명 🎈
+  private String address; // 소재지도로명주소
 
-  private String opr_tel; // 운영기관전화번호
-  private String opr_nam; // 운영기관명
+  private String operationTel; // 운영기관전화번호
+  private String operationName; // 운영기관명
 
-  private String wds_tme; // 평일관람시작시각
-  private String wde_tme; // 평일관람종료시각
-  private String hds_tme; // 공휴일관람시작시각
-  private String hde_tme; // 공휴일관람종료시각
-  private String hdy_inf; // 휴관정보
-  private String adt_fee; // 어른관람료
-  private String yot_fee; // 청소년관람료
-  private String chd_fee; // 어린이관람료
+  private String wdsTme; // 평일관람시작시각
+  private String wdeTme; // 평일관람종료시각
+  private String hdsTme; // 공휴일관람시작시각
+  private String hdeTme; // 공휴일관람종료시각
+  private String hdyInf; // 휴관정보
+  private String adtFee; // 어른관람료
+  private String yotFee; // 청소년관람료
+  private String chdFee; // 어린이관람료
 
-  private String mng_tel; // 관리기관전화번호
-  private String mng_nam; // 관리기관명
-  private String reg_dat; // 데이터기준일자
-
-  private String artMuseumCode; // 새로운 필드 추가
+  private String mngTel; // 관리기관전화번호
+  private String mngNam; // 관리기관명
+  private String regDat; // 데이터기준일자
 }
