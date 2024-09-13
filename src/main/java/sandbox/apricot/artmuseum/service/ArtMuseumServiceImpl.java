@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.http.HttpEntity;
@@ -39,9 +38,6 @@ public class ArtMuseumServiceImpl implements ArtMuseumService {
   @Value("${Art-Museum.default-url}")
   private String defaultUrl;
 
-  @Autowired
-  RestTemplate restTemplate;
-
   private final ArtMuseumRepository repository;
 
   @Override
@@ -61,6 +57,7 @@ public class ArtMuseumServiceImpl implements ArtMuseumService {
       uriBuilder.append("&geomFilter=").append(multipolygon.getMultipolygon());
       String uri = uriBuilder.toString();
 
+      RestTemplate restTemplate = new RestTemplate();
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
       HttpEntity<String> entity = new HttpEntity<>(headers);
@@ -80,7 +77,7 @@ public class ArtMuseumServiceImpl implements ArtMuseumService {
           continue;
         }
       }
-      log.info(" >>> 📥 {} 의 데이터 수집 완료.",multipolygon.getKorName());
+      log.info(" >>> 📥 {} 의 데이터 수집 완료.", multipolygon.getKorName());
       // response.getBody()로부터 받은 JSON 문자열
       String responseBody = response.getBody();
 
