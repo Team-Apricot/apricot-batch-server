@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 
 public class GeomFilterConverter {
 
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void createMultipolygonRegion() throws FileNotFoundException {
     // JSON 파일 경로 (리소스 경로로 설정)
     String JSONPath = "/artmuseum/TL_SCCO_SIG.json";  // 파일 경로는 resources 폴더를 기준으로 설정
     ArrayList<String> enumList = new ArrayList<>();
@@ -81,7 +81,7 @@ public class GeomFilterConverter {
           regionCoord.deleteCharAt(regionCoord.length() - 1);
           regionCoord.append(")))");
 
-          System.out.println(regionKORName+"의 url 예상 길이 : "+(regionCoord.length()+127));
+          System.out.println(regionKORName + "의 url 예상 길이 : " + (regionCoord.length() + 127));
 
           enumList.add(regionCoord.toString());
           regionKORNames.add(regionKORName.toString());

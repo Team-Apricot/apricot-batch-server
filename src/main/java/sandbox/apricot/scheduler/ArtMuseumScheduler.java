@@ -18,8 +18,8 @@ public class ArtMuseumScheduler {
 
   private final ArtMuseumService artMuseumService;
 
-  @Scheduled(fixedRate = 60000) // 테스트 용도 1분, TODO: 프로젝트 배포 시점 삭제
-//  @Scheduled(cron = "0 5 4 * * MON-FRI") // 주중(월요일 ~ 금요일) 새벽 4시 5분에 실행
+  //  @Scheduled(fixedRate = 60000) // 테스트 용도 1분, TODO: 프로젝트 배포 시점 삭제
+  @Scheduled(cron = "0 5 4 * * MON-FRI") // 주중(월요일 ~ 금요일) 새벽 4시 5분에 실행
   public void schedule() throws UnsupportedEncodingException, InterruptedException {
     log.info(" >>> 🔄 미술관/박물관 데이터 수집 시작");
 

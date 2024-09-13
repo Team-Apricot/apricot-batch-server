@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class EmdJSONConverter {
 
-  public static void main(String[] args) {
+  public static void createEmdJson(String[] args) {
     String csvFilePath = "src/main/java/sandbox/apricot/util/EmdCode.csv";  // CSV 파일 경로
     String jsonFilePath = "src/main/java/sandbox/apricot/util/EmdCode.json";  // JSON 파일 경로
 
