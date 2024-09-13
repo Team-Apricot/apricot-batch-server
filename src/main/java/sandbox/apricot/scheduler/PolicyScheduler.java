@@ -17,7 +17,7 @@ public class PolicyScheduler {
     private final PolicyService service;
 
     // @Scheduled(fixedRate = 60000) // 테스트 용도 1분, TODO: 프로젝트 배포 시점 삭제
-    @Scheduled(cron = "0 0 4 * * MON-FRI") // 주중(월요일 ~ 금요일) 새벽 4시에 실행
+//    @Scheduled(cron = "0 0 4 * * MON-FRI") // 주중(월요일 ~ 금요일) 새벽 4시에 실행
     public void schedule() {
         log.info(" >>> 🔄 청년 정책 데이터 수집 시작");
 

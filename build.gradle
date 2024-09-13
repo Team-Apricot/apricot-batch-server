@@ -47,6 +47,10 @@ dependencies {
     // JSON in JAVA
     // https://mvnrepository.com/artifact/org.json/json
     implementation 'org.json:json:20240303'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    // apach csv
+    implementation 'org.apache.commons:commons-csv:1.9.0'
+
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
