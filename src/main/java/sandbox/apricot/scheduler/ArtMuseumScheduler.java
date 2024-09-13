@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import sandbox.apricot.artmuseum.dto.response.ArtMuseumDTO;
 import sandbox.apricot.artmuseum.service.ArtMuseumService;
-import sandbox.apricot.youth.dto.response.PolicyDto;
 
 @Component
 @RequiredArgsConstructor
@@ -29,10 +28,10 @@ public class ArtMuseumScheduler {
     if (artMuseumDTOS.isEmpty()) {
       log.info(" >>> 📉 저장할 새로운 데이터가 없습니다.");
     } else {
-      log.info(" >>> 📈 {}개의 박물관/미술관 데이터를 수집하였습니다.", artMuseumDTOS.size());
+      log.info(" >>> 📈 {}개의 미술관/박물관 데이터를 수집하였습니다.", artMuseumDTOS.size());
 
-      // 정책 데이터 저장
-//      artMuseumService.saveArtMuseum(artMuseumDTOS);
+      // 미술관/박물관 데이터 저장
+      artMuseumService.saveArtMuseum(artMuseumDTOS);
 
       log.info(" >>> ✅ 미술관/박물관 데이터 수집 및 데이터베이스 저장 완료 - {}", new Date());
     }
