@@ -18,13 +18,13 @@ public class GeomFilterConverter {
 
   public static void main(String[] args) throws FileNotFoundException {
     // JSON 파일 경로 (리소스 경로로 설정)
-    String JSONPath = "/TL_SCCO_SIG.json";  // 파일 경로는 resources 폴더를 기준으로 설정
+    String JSONPath = "/artmuseum/TL_SCCO_SIG.json";  // 파일 경로는 resources 폴더를 기준으로 설정
     ArrayList<String> enumList = new ArrayList<>();
     ArrayList<String> regionKORNames = new ArrayList<>();
     ArrayList<String> regionENGNames = new ArrayList<>();
-    
+
     // Multipolygon 최대 개수 설정
-    int limiter =99;
+    int limiter = 190;
     // StreamReader
     try (Reader reader = new InputStreamReader(
         GeomFilterConverter.class.getResourceAsStream(JSONPath),
@@ -55,11 +55,15 @@ public class GeomFilterConverter {
         String RegionSIGCode = (String) properties.get("SIG_CD");
 
         if (RegionSIGCode.startsWith("11")) {
-          int mpCount=0;
-//          String finale= "";
+          int mpCount = 0;
+          Object finale = coordinates.get(0).get(0);
           for (Object coord : coordinates.get(0)) {
-            if (mpCount>=limiter){
+            if (mpCount >= limiter) {
               System.out.println(regionKORName + "의 Multipolygon이 너무 길어 끊겼습니다.😥");
+              for (String c1 : finale.toString().substring(1, finale.toString().length() - 1)
+                  .split(",")) {
+                regionCoord.append(c1);
+              }
               break;
             }
 
@@ -76,6 +80,8 @@ public class GeomFilterConverter {
           // 마지막 콤마 제거 후 마무리
           regionCoord.deleteCharAt(regionCoord.length() - 1);
           regionCoord.append(")))");
+
+          System.out.println(regionKORName+"의 url 예상 길이 : "+(regionCoord.length()+127));
 
           enumList.add(regionCoord.toString());
           regionKORNames.add(regionKORName.toString());
