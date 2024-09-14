@@ -25,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import sandbox.apricot.util.AgeInfoMapper;
 import sandbox.apricot.util.ExtractMapper;
+import sandbox.apricot.util.PeriodFormatter;
 import sandbox.apricot.youth.dto.response.PolicyDto;
 import sandbox.apricot.youth.entity.Policy;
 import sandbox.apricot.youth.repository.PolicyRepository;
@@ -117,6 +118,7 @@ public class PolicyServiceImpl implements PolicyService {
             JSONObject policy = youthPolicies.optJSONObject(item);
 
             String polyBizSecd = policy.optString("polyBizSecd");
+            String prdRpttSecd = policy.optString("prdRpttSecd");
 
             String rqutPrdCn = policy.optString("rqutPrdCn");
             Map<String, String> dates = ExtractMapper.extractDates(rqutPrdCn);
@@ -130,6 +132,7 @@ public class PolicyServiceImpl implements PolicyService {
                     .policyName(policy.optString("polyBizSjnm"))
                     .policyContent(policy.optString("polyItcnCn"))
                     .supportContent(policy.optString("sporCn"))
+                    .prdRpttSecd(PeriodFormatter.formatPrdRpttSecd(prdRpttSecd)) // 사업 신청 기간 반복 구분 내용
                     .schedule(rqutPrdCn) // TODO: 단어 필터링 지속적인 확인 필요. 추후 삭제될 컬럼.
                     .policyStartDate(dates.get("policyStartDate"))
                     .policyEndDate(dates.get("policyEndDate"))
@@ -182,6 +185,7 @@ public class PolicyServiceImpl implements PolicyService {
                         .policyName(dto.getPolicyName())
                         .policyContent(dto.getPolicyContent())
                         .supportContent(dto.getSupportContent())
+                        .prdRpttSecd(dto.getPrdRpttSecd())
                         .schedule(dto.getSchedule()) // TODO: 단어 필터링 지속적인 확인 필요. 추후 삭제될 컬럼.
                         .policyStartDate(dto.getPolicyStartDate())
                         .policyEndDate(dto.getPolicyEndDate())

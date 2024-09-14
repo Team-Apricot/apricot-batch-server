@@ -14,6 +14,7 @@ public class PolicyDto {
     private String policyContent; // 정책 내용
     private String supportContent; // 지원 내용
 
+    private String prdRpttSecd; // 사업 신청 기간 반복 구분 내용
     private String schedule; // TODO: 가공 후 삭제. 일정 -> 정책 시작, 마감일 가공 패턴 찾기
     private String policyStartDate; // 정책 시작일
     private String policyEndDate; // 정책 마감일
