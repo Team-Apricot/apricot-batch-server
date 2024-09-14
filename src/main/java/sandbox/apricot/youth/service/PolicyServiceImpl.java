@@ -23,8 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import sandbox.apricot.util.AgeInfoMapper;
-import sandbox.apricot.util.ExtractMapper;
+import sandbox.apricot.util.AgeInfoFormatter;
+import sandbox.apricot.util.ExtractFormatter;
 import sandbox.apricot.util.PeriodFormatter;
 import sandbox.apricot.youth.dto.response.PolicyDto;
 import sandbox.apricot.youth.entity.Policy;
@@ -121,9 +121,9 @@ public class PolicyServiceImpl implements PolicyService {
             String prdRpttSecd = policy.optString("prdRpttSecd");
 
             String rqutPrdCn = policy.optString("rqutPrdCn");
-            Map<String, String> dates = ExtractMapper.extractDates(rqutPrdCn);
+            Map<String, String> dates = ExtractFormatter.extractDates(rqutPrdCn);
 
-            Map<String, Integer> ageRange = AgeInfoMapper.extractAgeRange(policy.optString("ageInfo"));
+            Map<String, Integer> ageRange = AgeInfoFormatter.extractAgeRange(policy.optString("ageInfo"));
 
             PolicyDto resDto = PolicyDto.builder()
                     .policyCode(policy.optString("bizId"))

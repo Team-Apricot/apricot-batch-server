@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AgeInfoMapper {
+public class AgeInfoFormatter {
 
     public static Map<String, Integer> extractAgeRange(String ageInfo) {
         Map<String, Integer> ageMap = new HashMap<>();
