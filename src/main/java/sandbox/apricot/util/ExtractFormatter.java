@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ExtractMapper {
+public class ExtractFormatter {
 
     public static Map<String, String> extractDates(String date) {
         Map<String, String> dateMap = new HashMap<>();
