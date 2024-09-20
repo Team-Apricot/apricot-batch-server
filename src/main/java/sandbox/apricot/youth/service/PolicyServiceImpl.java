@@ -119,20 +119,26 @@ public class PolicyServiceImpl implements PolicyService {
 
             String polyBizSecd = policy.optString("polyBizSecd");
             String prdRpttSecd = policy.optString("prdRpttSecd");
+            String districtCode = "26";
+            if (polyBizSecd.length() > 9) {
+                districtCode=polyBizSecd.substring(polyBizSecd.length() - 2);
+            }
 
             String rqutPrdCn = policy.optString("rqutPrdCn");
             Map<String, String> dates = ExtractFormatter.extractDates(rqutPrdCn);
 
-            Map<String, Integer> ageRange = AgeInfoFormatter.extractAgeRange(policy.optString("ageInfo"));
+            Map<String, Integer> ageRange = AgeInfoFormatter.extractAgeRange(
+                    policy.optString("ageInfo"));
 
             PolicyDto resDto = PolicyDto.builder()
                     .policyCode(policy.optString("bizId"))
                     .categoryCode(policy.optString("polyRlmCd"))
-                    .districtCode(polyBizSecd.substring(polyBizSecd.length() - 2))
+                    .districtCode(districtCode)
                     .policyName(policy.optString("polyBizSjnm"))
                     .policyContent(policy.optString("polyItcnCn"))
                     .supportContent(policy.optString("sporCn"))
-                    .prdRpttSecd(PeriodFormatter.formatPrdRpttSecd(prdRpttSecd)) // 사업 신청 기간 반복 구분 내용
+                    .prdRpttSecd(
+                            PeriodFormatter.formatPrdRpttSecd(prdRpttSecd)) // 사업 신청 기간 반복 구분 내용
                     .schedule(rqutPrdCn) // TODO: 단어 필터링 지속적인 확인 필요. 추후 삭제될 컬럼.
                     .policyStartDate(dates.get("policyStartDate"))
                     .policyEndDate(dates.get("policyEndDate"))
